@@ -47,3 +47,12 @@ export function ValidationObject(classDto: any, path: IPathValidation) {
     }
   };
 }
+
+export type ControllerBase = (
+  body: object,
+  params?: object,
+  next?: NextFunction
+) => Promise<IHttpResponse>;
+export function Adapter() {
+  return async function () {};
+}
