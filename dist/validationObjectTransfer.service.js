@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ValidationObject = exports.DtoBase = void 0;
 const class_validator_1 = require("class-validator");
 class DtoBase {
+    Id;
     async validate() {
         return (0, class_validator_1.validateOrReject)(this);
     }
