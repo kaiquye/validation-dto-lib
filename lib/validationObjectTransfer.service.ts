@@ -48,11 +48,34 @@ export function ValidationObject(classDto: any, path: IPathValidation) {
   };
 }
 
+export interface IHttpResponse {
+  status?: number;
+  body?: object | string;
+  cookies?: { name: string; value: string };
+}
+
 export type ControllerBase = (
   body: object,
   params?: object,
   next?: NextFunction
 ) => Promise<IHttpResponse>;
-export function Adapter() {
-  return async function () {};
+
+export function ControllerAdapter(controller: ControllerBase) {
+  return async function (req: Request, res: Response) {
+    const body = req?.body;
+    const params = req?.params;
+
+    try {
+      const result = await controller(body, params);
+      const cookies = result.cookies;
+
+      if (cookies) {
+        res.cookie(cookies.name, cookies.value, { httpOnly: true });
+      }
+
+      return res.status(result?.status || 200).json(result?.body);
+    } catch (error) {
+      return res.status(500).json("error: internal, contact an administrator");
+    }
+  };
 }
