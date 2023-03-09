@@ -1,6 +1,6 @@
 {
   "name": "dto-validatorjs",
-  "version": "1.0.3",
+  "version": "1.9.9",
   "description": "simple library to facilitate validation of object transfers with express.",
   "main": "dist/index.js",
   "scripts": {

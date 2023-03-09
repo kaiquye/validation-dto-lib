@@ -1,3 +1,2 @@
-import { ValidationObject, DtoBase } from "./validationObjectTransfer.service";
-
-export default { ValidationObject, DtoBase };
+import { DtoBase, ValidationObject } from "./validationObjectTransfer.service";
+export default { DtoBase, ValidationObject };

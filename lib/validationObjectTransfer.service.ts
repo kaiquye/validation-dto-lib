@@ -3,7 +3,7 @@ import { validateOrReject } from "class-validator";
 type IPathValidation = "BODY" | "PARAM";
 
 export abstract class DtoBase {
-  validate() {
+  async validate() {
     return validateOrReject(this);
   }
 }
