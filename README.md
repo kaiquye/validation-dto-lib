@@ -1,6 +1,6 @@
 
 <p align="center" >
- Simple  Validate Express DTO  with Class Validator ✅
+Simple express class validator ✅
 </p>
 
 <p align="center" >
