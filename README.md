@@ -27,6 +27,7 @@ Simple express class validator ✅
 - I created your dto using the class validator normally. Just add a **constructor** and **extends DtoBase** like the example below
 ```js
 import { IsString } from "class-validator";
+import { DtoBase } from "validation-dto-lib";
 
 class YourDto extends DtoBase {
   @IsString()
