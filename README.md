@@ -3,9 +3,19 @@
 Simple express class validator ✅
 </p>
 
+![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+
 <p align="center" >
    <img width=200 src='https://user-images.githubusercontent.com/69175890/224386459-5e92437b-7237-402a-b42a-daee913e178b.png'/>
 </p>
+
+Npm: https://www.npmjs.com/package/validation-dto-lib
+
+### Install 
+```js
+ npm i validation-dto-lib
+```
+
 
  ## Simple example
 
