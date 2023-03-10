@@ -20,6 +20,9 @@ type IPathValidation = "BODY" | "PARAM" | "QUERY" ;
  * @param [IPathValidation] path - "BODY"
  * @return {void}
  * @constructor
+ *
+ * @function validator.ValidationObject(UserDto, "BODY")
+ *
  * ```ts
  * import Validator from 'validation-dto-lib';
  *
@@ -35,7 +38,6 @@ type IPathValidation = "BODY" | "PARAM" | "QUERY" ;
  *     validator.ValidationObject(UserDto, "BODY"),
  *     UserController.execute
  * );
- * validator.ValidationObject(UserDto, "BODY"),
  * ```
  */
 
@@ -82,6 +84,42 @@ export type ControllerBase = (
   params?: object,
   next?: NextFunction
 ) => Promise<IHttpResponse>;
+
+/**
+ * * @author Kaic Mendes <https://github.com/kaiquye>
+ * @param classDto
+ * @param [IPathValidation] path - "BODY"
+ * @return {void}
+ * @constructor
+ *
+ * @function validator.ValidationObject(UserDto, "BODY")
+ *
+ * ```ts
+ * import Validator from 'validation-dto-lib';
+ *
+ * // Your router
+ *
+ * app.post(
+ *     "/login",
+ *     validator.ValidationObject(UserDto, "BODY"),
+ *     UserController.execute
+ * );
+ *
+ * // Your controller
+ *
+ * import { IHttpResponse } from "validation-dto-lib";
+ *
+ * class UserController {
+ *   async createUser(req, res): Promise<IHttpResponse> {
+ *    const result = await service();
+ *     return {
+ *       body: "",
+ *       status: 200,
+ *     };
+ *   }
+ * }
+ * ```
+ */
 
 export function ControllerAdapter(controller: ControllerBase) {
   return async function (req: Request, res: Response) {

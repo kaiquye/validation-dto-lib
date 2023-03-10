@@ -10,14 +10,35 @@ class DtoBase {
     }
 }
 exports.DtoBase = DtoBase;
+/**
+ * * @author Kaic Mendes <https://github.com/kaiquye>
+ * @param classDto
+ * @param [IPathValidation] path - "BODY"
+ * @return {void}
+ * @constructor
+ * ```ts
+ * import Validator from 'validation-dto-lib';
+ *
+ * class UserDto {
+ *     @IsString()
+ *     login: string;
+ *     @IsString()
+ *     password: string;
+ * }
+ *
+ * app.post(
+ *     "/login",
+ *     validator.ValidationObject(UserDto, "BODY"),
+ *     UserController.execute
+ * );
+ * validator.ValidationObject(UserDto, "BODY"),
+ * ```
+ */
 function ValidationObject(classDto, path) {
     return async function (req, res, next) {
         try {
             let result;
             let error;
-            console.log(req.body);
-            console.log(path);
-            console.log();
             switch (path) {
                 case "BODY":
                     result = new classDto({ ...req.body });
@@ -25,6 +46,10 @@ function ValidationObject(classDto, path) {
                     error = await result.validate();
                     break;
                 case "PARAM":
+                    result = new classDto({ ...req.body });
+                    error = await result.validate();
+                    break;
+                case "QUERY":
                     result = new classDto({ ...req.body });
                     error = await result.validate();
                     break;
