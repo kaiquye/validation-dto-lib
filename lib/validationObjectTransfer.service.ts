@@ -13,6 +13,7 @@ export abstract class DtoBase {
 
 type IPathValidation = "BODY" | "PARAM";
 
+
 export function ValidationObject(classDto: any, path: IPathValidation) {
   const isDtoValid = classDto instanceof DtoBase;
   console.log(isDtoValid);
@@ -23,7 +24,7 @@ export function ValidationObject(classDto: any, path: IPathValidation) {
     throw error;
   }
 
-  return async function (req: Request, res: Response, next: NextFunction) {
+  return async function (req: Request, res: Response, next: NextFunction): Promise<Response | void>{
     try {
       let result;
       let error;
