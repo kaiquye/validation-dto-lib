@@ -11,19 +11,35 @@ export abstract class DtoBase {
   }
 }
 
-type IPathValidation = "BODY" | "PARAM";
+type IPathValidation = "BODY" | "PARAM" | "QUERY" ;
 
+
+/**
+ * * @author Kaic Mendes <https://github.com/kaiquye>
+ * @param classDto
+ * @param [IPathValidation] path - "BODY"
+ * @return {void}
+ * @constructor
+ * ```ts
+ * import Validator from 'validation-dto-lib';
+ *
+ * class UserDto {
+ *     @IsString()
+ *     login: string;
+ *     @IsString()
+ *     password: string;
+ * }
+ *
+ * app.post(
+ *     "/login",
+ *     validator.ValidationObject(UserDto, "BODY"),
+ *     UserController.execute
+ * );
+ * validator.ValidationObject(UserDto, "BODY"),
+ * ```
+ */
 
 export function ValidationObject(classDto: any, path: IPathValidation) {
-  const isDtoValid = classDto instanceof DtoBase;
-  console.log(isDtoValid);
-
-  if (isDtoValid === false) {
-    error.message = "invalid dto class.";
-    error.name = "invalid type";
-    throw error;
-  }
-
   return async function (req: Request, res: Response, next: NextFunction): Promise<Response | void>{
     try {
       let result;
@@ -32,15 +48,21 @@ export function ValidationObject(classDto: any, path: IPathValidation) {
       switch (path) {
         case "BODY":
           result = new classDto({ ...req.body });
+          result.name;
           error = await result.validate();
           break;
         case "PARAM":
           result = new classDto({ ...req.body });
           error = await result.validate();
           break;
+        case "QUERY":
+          result = new classDto({ ...req.body });
+          error = await result.validate();
+          break;
         default:
           result = new classDto({ ...req.body });
           error = await result.validate();
+          break;
       }
       if (error === undefined) return next();
     } catch (exception) {
