@@ -63,7 +63,7 @@ export type ControllerBase = (
 export function ControllerAdapter(controller: ControllerBase) {
   return async function (req: Request, res: Response) {
     const body = req?.body;
-    const params = req?.params;
+    const params = {params: req?.params, query: req?.query}
 
     try {
       const result = await controller(body, params);
