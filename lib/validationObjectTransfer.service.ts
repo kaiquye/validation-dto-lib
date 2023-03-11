@@ -3,7 +3,7 @@ import { validateOrReject } from "class-validator";
 
 const error = new Error();
 
-export abstract class DtoBase {
+abstract class DtoBase {
   public Id?: string;
 
   async validate() {
@@ -41,7 +41,7 @@ type IPathValidation = "BODY" | "PARAM" | "QUERY" ;
  * ```
  */
 
-export function ValidationObject(classDto: any, path: IPathValidation) {
+function ValidationObject(classDto: any, path: IPathValidation) {
   return async function (req: Request, res: Response, next: NextFunction): Promise<Response | void>{
     try {
       let result;
@@ -73,13 +73,13 @@ export function ValidationObject(classDto: any, path: IPathValidation) {
   };
 }
 
-export interface IHttpResponse {
+interface IHttpResponse {
   status?: number;
   body?: object | string;
   cookies?: { name: string; value: string };
 }
 
-export type ControllerBase = (
+type ControllerBase = (
   body: object,
   params?: object,
   next?: NextFunction
@@ -121,7 +121,7 @@ export type ControllerBase = (
  * ```
  */
 
-export function ControllerAdapter(controller: ControllerBase) {
+function ControllerAdapter(controller: ControllerBase) {
   return async function (req: Request, res: Response) {
     const body = req?.body;
     const params = {params: req?.params, query: req?.query}
@@ -140,3 +140,5 @@ export function ControllerAdapter(controller: ControllerBase) {
     }
   };
 }
+
+export default {ValidationObject,  DtoBase}
