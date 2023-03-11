@@ -11,8 +11,7 @@ Simple express class validator ✅
 
 </p>
 
-### :sparkles: Npm: https://www.npmjs.com/package/validation-dto-lib
-##### :arrow_down: 1000 downloads 
+#### :sparkles: Npm: https://www.npmjs.com/package/validation-dto-lib
 
 ### Install 
 ```js
