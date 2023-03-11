@@ -1,8 +1,2 @@
-import {
-  DtoBase,
-  ValidationObject,
-  ControllerAdapter,
-  IHttpResponse,
-  ControllerBase
-} from "./validationObjectTransfer.service";
-export  { DtoBase, ValidationObject, ControllerAdapter, IHttpResponse, ControllerBase };
+import validator from "./validationObjectTransfer.service";
+export default { DtoBase: validator.DtoBase, ValidationObject: validator.ValidationObject };
